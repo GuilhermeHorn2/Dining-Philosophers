@@ -48,15 +48,9 @@ public class Simulate {
 	
 	public void start_simulation(){
 		
-		while(count != n){
-			for(int i = 0;i < n;i++){
-				if(!phils.get(i).get_ate()){
-					phils.get(i).run();
-				}
-				else {
-					count++;
-				}
-			}
+		for(int i = 0;i < n;i++) {
+			Thread tmp = new Thread(phils.get(i));
+			tmp.start();
 		}
 		
 	}
