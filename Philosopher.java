@@ -91,14 +91,14 @@ public class Philosopher implements Runnable{
 			/*
 			 * I will use time backoff deadlock prevention.
 			 */
-			
-			while(!try_locks()) {
-				
-				sleep(100L * ((long) Math.random()));
-				
+			if(!ate) {
+				while(!try_locks()) {
+					sleep(100L * ((long) Math.random()));
+				}
+				c2.unlock();
+				c1.unlock();
+				this.request_stop();
 			}
-			c2.unlock();
-			c1.unlock();
 			this.request_stop();
 			
 		}
